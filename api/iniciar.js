@@ -29,11 +29,11 @@ function initAPI(app) {
             const routes = requireDir(config.modules[m].path);
             for (const route in routes) {
                 if (config.modules[m].middleware) {
-                    console.log("Rutasss: ", config.modules[m].route);
+                    console.log("Rutas: ", config.modules[m].route);
                     app.use("/api" + config.modules[m].route, config.modules[m].middleware, routes[route]);
                 }
                 else {
-                    console.log("Rutasss: ", config.modules[m].route);
+                    console.log("Rutas: ", config.modules[m].route);
                     app.use("/api" + config.modules[m].route, routes[route]);
                 }
             }

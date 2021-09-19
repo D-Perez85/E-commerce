@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hosts = {
     mongoDB_main: {
-        host: `mongodb://localhost:27017/ecommerce`
+        host: `mongodb://localhost:27017/commerce`
         // options : {
         //TERMINAR
         // }
