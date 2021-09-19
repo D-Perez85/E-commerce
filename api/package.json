@@ -1,0 +1,30 @@
+{
+  "name": "prueba",
+  "version": "1.0.0",
+  "description": "Api de prueba",
+  "main": "index.js",
+  "scripts": {
+    "startNode": "tsc && gulp && concurrently \"npm run node\" ",
+    "start": "concurrently -r \"npm run tsc:w\" \"npm run node\" ",
+    "node": "nodemon -q ./index.js",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "tsc:next": "tsc --target es2018 --lib es2018",
+    "lint": "tslint --project .",
+    "lint:fix": "tslint --project . --fix"
+  },
+  "author": "Damian Perez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.2.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.7",
+    "nodemon": "^2.0.12",
+    "require-dir": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.6.2",
+    "typescript": "4.3.4"
+  }
+}
