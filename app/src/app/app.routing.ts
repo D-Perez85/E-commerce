@@ -6,8 +6,17 @@ import { AuthGuard } from "./shared/services/auth/auth.guard";
 export const rootRouterConfig: Routes = [
   {
     path: "",
-    redirectTo: "others/blank",
-    pathMatch: "full"
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./modules/productos/productos.module").then(
+            m => m.ProductosModule
+          ),
+        data: { title: "Crear Producto" }
+      }
+    ]
   },
   
   {

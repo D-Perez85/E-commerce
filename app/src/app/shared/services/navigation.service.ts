@@ -27,7 +27,15 @@ interface IBadge {
 @Injectable()
 export class NavigationService {
   constructor() {}
-  iconMenu: IMenuItem[] = [];
+  iconMenu: IMenuItem[] = [
+    {
+      name: "Productos",
+      type: "link",
+      tooltip: "Productos",
+      icon: "qr_code_scanner",
+      state: "crear-producto/crearProducto"
+    },
+  ];
 
   // Icon menu TITLE at the very top of navigation.
   // This title will appear if any icon type item is present in menu.
