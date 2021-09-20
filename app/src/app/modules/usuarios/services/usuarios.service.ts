@@ -7,6 +7,9 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
+  getUsuarios() {
+    return this.http.get(this.usuarioUrl + "/usuarios");
+  }
 
   
 }

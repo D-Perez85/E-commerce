@@ -25,6 +25,7 @@ import { SharedModule } from './../../shared/shared.module';
 import { MatStepperModule } from '@angular/material/stepper';
 
 import { CrearUsuarioComponent } from '../usuarios/crear-usuario/crear-usuario.component';
+import { ConsultarUsuarioComponent } from './consulta-usuarios/consulta-usuario.component';
 import { UsuariosRoutes } from './usuarios.routing';
 import {UsuarioService} from './services/usuarios.service'
 
@@ -56,7 +57,7 @@ import {UsuarioService} from './services/usuarios.service'
     RouterModule.forChild(UsuariosRoutes)//LEVANTA LOS MODULOS HIJO
   ],
   declarations: [
-    CrearUsuarioComponent
+    CrearUsuarioComponent,ConsultarUsuarioComponent
   ],
   providers: [
     UsuarioService

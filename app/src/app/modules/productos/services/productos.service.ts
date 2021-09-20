@@ -6,7 +6,6 @@ export class ProductoService {
   private productoUrl = "http://localhost:3002/api/modules/productos"; //VA HASTA LA RUTA DEL MODULO, SE CONCANTENA EL RESTO
 
   constructor(private http: HttpClient) {}
-
   
   getProductos() {
     return this.http.get(this.productoUrl + "/productos");
