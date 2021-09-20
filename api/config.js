@@ -5,6 +5,11 @@ exports.modules = {
         active: true,
         path: "./modules/productos/routes",
         route: "/modules/productos",
+    },
+    usuarios: {
+        active: true,
+        path: "./modules/usuarios/routes",
+        route: "/modules/usuarios",
     }
 };
 //# sourceMappingURL=config.js.map
