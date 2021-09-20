@@ -7,6 +7,10 @@ export class ProductoService {
 
   constructor(private http: HttpClient) {}
   
+  guardarProducto(producto: any) {
+    return this.http.post(this.productoUrl + "/producto", producto);
+  }
+
   getProductos() {
     return this.http.get(this.productoUrl + "/productos");
   }

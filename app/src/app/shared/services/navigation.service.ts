@@ -33,7 +33,7 @@ export class NavigationService {
       type: "link",
       tooltip: "Productos",
       icon: "qr_code_scanner",
-      state: "crear-producto/crearProducto"
+      state: "crear-producto/crearProducto", 
     },
     {
       name: "Usuarios",
@@ -42,7 +42,8 @@ export class NavigationService {
       icon: "person",
       state: "crear-usuario/crearUsuario"
     },
-  ];
+    
+ ];
 
   // Icon menu TITLE at the very top of navigation.
   // This title will appear if any icon type item is present in menu.
