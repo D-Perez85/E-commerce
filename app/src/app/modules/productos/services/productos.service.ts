@@ -7,5 +7,9 @@ export class ProductoService {
 
   constructor(private http: HttpClient) {}
 
+  
+  getProductos() {
+    return this.http.get(this.productoUrl + "/productos");
+  }
 
 }

@@ -25,7 +25,8 @@ import { MatStepperModule } from '@angular/material/stepper'; //FALTABA ESTO
 
 import { ProductosRoutes } from './productos.routing';
 import {ProductoService} from './services/productos.service'; 
-import {CrearProductoComponent} from './crear-producto/crear-producto.component'
+import {CrearProductoComponent} from './crear-producto/crear-producto.component'; 
+import { ConsultarProductoComponent } from './consulta-productos/consulta-producto.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -53,7 +54,7 @@ import {CrearProductoComponent} from './crear-producto/crear-producto.component'
     HttpClientModule,
     RouterModule.forChild(ProductosRoutes)//LEVANTA LOS MODULOS HIJO
   ],
-  declarations: [CrearProductoComponent],
+  declarations: [CrearProductoComponent, ConsultarProductoComponent],
   providers: [ProductoService]
 })
 export class ProductosModule { }
