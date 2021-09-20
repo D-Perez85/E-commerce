@@ -22,4 +22,11 @@ export class ProductoService {
     );
   }
 
+  borrarProducto(idProducto, producto) {
+    return this.http.delete(
+      this.productoUrl + "/producto/" + idProducto,
+      producto
+    );
+  }
+
 }
