@@ -7,9 +7,20 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
+  guardarUsuario(usuario: any) {
+    debugger
+    return this.http.post(this.usuarioUrl + "/usuario", usuario);
+  }
+
   getUsuarios() {
     return this.http.get(this.usuarioUrl + "/usuarios");
   }
 
-  
+  editarUsuario(idUsuario, usuario) {
+    return this.http.put(this.usuarioUrl + "/usuario/" + idUsuario, usuario);
+  }
+
+  borrarUsuario(idUsuario, usuario) {
+    return this.http.delete(this.usuarioUrl + "/usuario/" + idUsuario, usuario);
+  }
 }
