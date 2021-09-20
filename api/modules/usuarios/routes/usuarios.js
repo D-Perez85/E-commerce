@@ -49,5 +49,18 @@ router.put("/usuario/:id", (req, res) => __awaiter(void 0, void 0, void 0, funct
         return res.status(404).send({ status: "error", data: err });
     }
 }));
+router.delete("/usuario/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const userDelete = req.body;
+        const idUser = req.params.id;
+        const userDeleted = yield usuariosSchema.usuarios.findByIdAndDelete(idUser, userDelete);
+        console.log("User Borrado", userDeleted);
+        return res.status(200).send({ status: "success", data: userDeleted });
+    }
+    catch (err) {
+        console.log("Error: ", err);
+        return res.status(404).send({ status: "error", data: err });
+    }
+}));
 module.exports = router;
 //# sourceMappingURL=usuarios.js.map
