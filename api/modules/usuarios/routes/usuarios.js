@@ -35,5 +35,19 @@ router.get("/usuarios", (req, res) => __awaiter(void 0, void 0, void 0, function
         return res.status(404).send({ status: "error", data: err });
     }
 }));
+router.put("/usuario/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log("Id Usuario", req.params);
+        const userUpdate = req.body;
+        const idUser = req.params.id;
+        const userUpdated = yield usuariosSchema.usuarios.findByIdAndUpdate(idUser, userUpdate, { new: true });
+        console.log("User modificado", userUpdated);
+        return res.status(200).send({ status: "success", data: userUpdated });
+    }
+    catch (err) {
+        console.log("Error: ", err);
+        return res.status(404).send({ status: "error", data: err });
+    }
+}));
 module.exports = router;
 //# sourceMappingURL=usuarios.js.map
