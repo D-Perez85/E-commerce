@@ -32,7 +32,20 @@ export const rootRouterConfig: Routes = [
       }
     ]
   },
-  
+  {
+    path: "",
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./modules/auth/autenticaciones.module").then(
+            m => m.AutenticacionesModule
+          ),
+        data: { title: "Autenticacion" }
+      }
+    ]
+  },  
   {
     path: "",
     component: AuthLayoutComponent,

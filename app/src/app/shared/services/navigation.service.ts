@@ -42,6 +42,13 @@ export class NavigationService {
       icon: "person",
       state: "crear-usuario/crearUsuario"
     },
+    {
+      name: "Autenticaciones",
+      type: "link",
+      tooltip: "Autenticaciones",
+      icon: "person",
+      state: "autenticacion/registrarUsuario"
+    }
     
  ];
 
