@@ -15,4 +15,11 @@ export class ProductoService {
     return this.http.get(this.productoUrl + "/productos");
   }
 
+  editarProducto(idProducto, producto) {
+    return this.http.put(
+      this.productoUrl + "/producto/" + idProducto,
+      producto
+    );
+  }
+
 }
