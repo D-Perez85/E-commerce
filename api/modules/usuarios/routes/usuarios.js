@@ -11,6 +11,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const express = require("express");
 const usuariosSchema = require("../schemas/usuarios");
 const router = express.Router();
+router.post("/usuario", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const newUser = req.body;
+        const usuarios = new usuariosSchema.usuarios(newUser);
+        const usuarioNuevo = yield usuarios.save();
+        console.log("User agregado", usuarioNuevo);
+        return res.status(200).send({ status: "success", data: usuarioNuevo });
+    }
+    catch (err) {
+        console.log("Error: ", err);
+        return res.status(404).send({ status: "error", data: err });
+    }
+}));
 router.get("/usuarios", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let usuarios = yield usuariosSchema.usuarios.find();
