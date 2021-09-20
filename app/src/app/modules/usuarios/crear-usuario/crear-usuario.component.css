@@ -1,0 +1,13 @@
+.cont-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+}
+
+.cont-buttons button:first-child {
+  background-color: #9e7979;
+}
+
+.cont-buttons button:last-child {
+  background-color: #426d64;
+}

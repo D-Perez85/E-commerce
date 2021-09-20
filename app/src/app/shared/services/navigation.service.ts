@@ -35,6 +35,13 @@ export class NavigationService {
       icon: "qr_code_scanner",
       state: "crear-producto/crearProducto"
     },
+    {
+      name: "Usuarios",
+      type: "link",
+      tooltip: "Usuarios",
+      icon: "person",
+      state: "crear-usuario/crearUsuario"
+    },
   ];
 
   // Icon menu TITLE at the very top of navigation.

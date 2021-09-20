@@ -18,6 +18,20 @@ export const rootRouterConfig: Routes = [
       }
     ]
   },
+  {
+    path: "",
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./modules/usuarios/usuarios.module").then(
+            m => m.UsuariosModule
+          ),
+        data: { title: "Crear Usuario" }
+      }
+    ]
+  },
   
   {
     path: "",
