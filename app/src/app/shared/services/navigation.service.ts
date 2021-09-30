@@ -29,7 +29,7 @@ export class NavigationService {
   constructor() {}
   iconMenu: IMenuItem[] = [
     {
-      name: "Productos",
+      name: "Registro Productos",
       type: "link",
       tooltip: "Productos",
       icon: "qr_code_scanner",
@@ -43,11 +43,18 @@ export class NavigationService {
       state: "consulta-productos/consultarProducto"
     },
     {
-      name: "Usuarios",
+      name: "Crear Usuarios",
       type: "link",
       tooltip: "Usuarios",
       icon: "person",
       state: "crear-usuario/crearUsuario"
+    },
+    {
+      name: "Consulta Usuario",
+      type: "link",
+      tooltip: "Usuarios",
+      icon: "person",
+      state: "consulta-usuarios/consultarUsuario"
     },
     {
       name: "Autenticaciones",
