@@ -57,7 +57,7 @@ export class NavigationService {
       state: "consulta-usuarios/consultarUsuario"
     },
     {
-      name: "Autenticaciones",
+      name: "Registrar Usuario",
       type: "link",
       tooltip: "Autenticaciones",
       icon: "person",
