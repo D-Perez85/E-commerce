@@ -36,6 +36,13 @@ export class NavigationService {
       state: "crear-producto/crearProducto", 
     },
     {
+      name: "Consulta Producto",
+      type: "link",
+      tooltip: "Productos",
+      icon: "qr_code_scanner",
+      state: "consulta-productos/consultarProducto"
+    },
+    {
       name: "Usuarios",
       type: "link",
       tooltip: "Usuarios",
