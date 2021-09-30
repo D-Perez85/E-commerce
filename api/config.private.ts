@@ -6,3 +6,7 @@ export const hosts ={
         // }
     }
 }
+
+export const auth = { //TE ASEGURA QUE SI ALGUIEN METE MANO SE INVALIDE EL TOKEN
+    jwtKey : '123'
+}

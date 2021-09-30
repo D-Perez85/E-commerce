@@ -1,11 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.initAPI = void 0;
 const bodyParser = require("body-parser");
 const config = require("./config");
 const connections_1 = require("./connections");
+const autenticaciones_class_1 = require("./modules/auth/autenticaciones.class");
 const requireDir = require("require-dir"); //Para poder levantar carpetas de la API-
 function initAPI(app) {
     connections_1.Connections.initialize();
+    // Inicializa la autenticación con Passport/JWT
+    autenticaciones_class_1.Auth.initialize(app);
     app.use(bodyParser.json({ limit: "150mb" }));
     app.use(bodyParser.urlencoded({
         extended: true,

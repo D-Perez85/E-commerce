@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.usuarios = exports.AutenticacionSchema = void 0;
 const mongoose = require("mongoose");
 exports.AutenticacionSchema = new mongoose.Schema({
     nombreUsuario: { type: String, required: true, lowercase: true },

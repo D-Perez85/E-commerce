@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.productos = exports.ProductoSchema = void 0;
 const mongoose = require("mongoose");
 exports.ProductoSchema = new mongoose.Schema({
     nombreProducto: { type: String, required: false, lowercase: true },

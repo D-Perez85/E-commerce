@@ -10,6 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const express = require("express");
 const autenticacionesSchema = require("../schemas/autenticaciones");
+const autenticaciones_controller_1 = require("../autenticaciones.controller");
+const autenticaciones_class_1 = require("../autenticaciones.class");
+const sha1Hash = require('sha1');
 const router = express.Router();
 router.post("/usuario", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -22,6 +25,31 @@ router.post("/usuario", (req, res) => __awaiter(void 0, void 0, void 0, function
     catch (err) {
         console.log("Error: ", err);
         return res.status(404).send({ status: "error", data: err });
+    }
+}));
+router.post('/login', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    // Función interna que genera token
+    const login = (user) => __awaiter(void 0, void 0, void 0, function* () {
+        res.json({
+            token: autenticaciones_class_1.Auth.generateUserToken2(user.usuario)
+        });
+    });
+    if (!req.body.usuario || !req.body.password) { //Verifica que el usuario haya ingresado algo, sino lo rebota
+        return next(403);
+    }
+    try {
+        const userResponse = yield (0, autenticaciones_controller_1.findUser)(req.body.usuario); //El usuario que viene de la app lo busca en la bdd para ver si está registrado
+        if (userResponse) { //Si el objeto es diferente a null
+            const { user } = userResponse;
+            const passwordSha1 = sha1Hash(req.body.password); //Encripta el password que viene de la app
+            if (passwordSha1 === user.password) { //Si la clave que viene de la bdd y de la aplicacion son iguales entra
+                return login(user);
+            }
+        }
+        return next(403);
+    }
+    catch (error) {
+        return next(403);
     }
 }));
 module.exports = router;

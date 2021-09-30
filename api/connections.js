@@ -1,17 +1,15 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Connections = void 0;
-var mongoose = require("mongoose");
-var configPrivate = require("./config.private");
+const mongoose = require("mongoose");
+const configPrivate = require("./config.private");
 function schemaDefaults(schema) {
     schema.set('toJSON', {
         virtuals: true,
         versionKey: false
     });
 }
-var Connections = /** @class */ (function () {
-    function Connections() {
-    }
+class Connections {
     /**
      * Inicializa las conexiones a MongoDB
      *
@@ -19,7 +17,7 @@ var Connections = /** @class */ (function () {
      *
      * @memberOf Connections
      */
-    Connections.initialize = function () {
+    static initialize() {
         // Configura Mongoose
         mongoose.Promise = global.Promise;
         mongoose.plugin(schemaDefaults);
@@ -28,7 +26,7 @@ var Connections = /** @class */ (function () {
         mongoose.connect(configPrivate.hosts.mongoDB_main.host);
         // configPrivate.hosts.mongoDB_main.options TERMINAR!
         this.main = mongoose.connection;
-    };
-    return Connections;
-}());
+    }
+}
 exports.Connections = Connections;
+//# sourceMappingURL=connections.js.map
