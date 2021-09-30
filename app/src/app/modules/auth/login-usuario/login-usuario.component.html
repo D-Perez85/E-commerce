@@ -1,0 +1,34 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">Login de Usuario</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-vertical-stepper [linear]="true">
+      <mat-step [stepControl]="usuarioForm">
+        <form [formGroup]="usuarioForm">
+          <ng-template matStepLabel>Escribe tu nombre</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Dni" formControlName="dni" required />
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Contraseña"
+              formControlName="password" required/>
+          </mat-form-field>
+        </form>
+        <ng-template matStepLabel>Confirmación</ng-template>
+
+        <div class="cont-buttons">
+          <button
+            mat-raised-button
+            color="primary"
+            matStepperNext
+            (click)="submit()"
+          >
+            Confirmar
+          </button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </mat-card-content>
+</mat-card>
