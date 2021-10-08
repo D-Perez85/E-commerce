@@ -10,15 +10,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findUser = void 0;
-const autenticaciones_1 = require("./schemas/autenticaciones");
+const userSchema = require("./schemas/autenticaciones");
 const sha1Hash = require('sha1');
 /**
  * Recupera los datos necesarios de un Usuario.
+   Se fija si el usuario existe en la bdd
  */
 function findUser(username) {
     return __awaiter(this, void 0, void 0, function* () {
-        const userAuth = autenticaciones_1.usuarios.findOne({ usuario: username }); //Se fija si el usuario existe en la bdd
-        console.log();
+        const userAuth = yield userSchema.usuarios.findOne({ usuario: username });
+        console.log("User desde auth: ", userAuth);
         if (userAuth) {
             return {
                 user: userAuth

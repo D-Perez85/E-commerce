@@ -15,7 +15,7 @@ export class LoginUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioForm = this.fb.group({
-      dni: ["", Validators.required],
+      usuario: ["", Validators.required],
       password: ["", Validators.required]
     });
   }
@@ -23,11 +23,18 @@ export class LoginUsuarioComponent implements OnInit {
   submit() {
     console.log(this.usuarioForm.value);
     this.loguearUsuario();
-    alert("Login exitoso!") //CONFIRMACION DE LOGUIN
+    //alert("Login exitoso!") //CONFIRMACION DE LOGUIN
   }
 
-  loguearUsuario(){this.AutenticacionService.loguearUsuario(this.usuarioForm.value).subscribe(
-    data => this.Router.navigate(['/'])
-  )}
-
+  loguearUsuario() {
+    this.AutenticacionService.loguearUsuario(this.usuarioForm.value).subscribe((data: any) => 
+    {
+      debugger
+      if (data) {
+        window.sessionStorage.setItem('jwt', data.token);
+      }
+    }
+    // this.Router.navigate(["/"])
+    );
+}
 }

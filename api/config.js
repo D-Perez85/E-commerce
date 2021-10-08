@@ -11,6 +11,11 @@ exports.modules = {
         active: true,
         path: "./modules/usuarios/routes",
         route: "/modules/usuarios",
+    },
+    registro: {
+        active: true,
+        path: "./modules/auth/routes",
+        route: "/modules/autenticaciones",
     }
 };
 //# sourceMappingURL=config.js.map

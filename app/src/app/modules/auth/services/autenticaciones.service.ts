@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class AutenticacionService {
-  private usuarioUrl = "http://localhost:3002/api/modules/usuarios"; //VA HASTA LA RUTA DEL MODULO, SE CONCANTENA EL RESTO
+  private usuarioUrl = "http://localhost:3002/api/modules/autenticaciones"; //VA HASTA LA RUTA DEL MODULO, SE CONCANTENA EL RESTO
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +14,7 @@ export class AutenticacionService {
 
   loguearUsuario(usuario: any) {
     //debugger
-    return this.http.post(this.usuarioUrl + "/usuario", usuario);
+    return this.http.post(this.usuarioUrl + "/login", usuario);
   }
 
 }

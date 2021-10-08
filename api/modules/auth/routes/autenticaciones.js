@@ -27,28 +27,39 @@ router.post("/usuario", (req, res) => __awaiter(void 0, void 0, void 0, function
         return res.status(404).send({ status: "error", data: err });
     }
 }));
-router.post('/login', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     // Función interna que genera token
     const login = (user) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("Entra al login: ", user);
         res.json({
-            token: autenticaciones_class_1.Auth.generateUserToken2(user.usuario)
+            //Genera el token y devuelve un usuario hacia la app
+            token: autenticaciones_class_1.Auth.generateUserToken2(user.usuario),
         });
     });
-    if (!req.body.usuario || !req.body.password) { //Verifica que el usuario haya ingresado algo, sino lo rebota
+    console.log("Usuario posta validando: ", req.body);
+    if (!req.body.usuario || !req.body.password) {
+        //Verifica que el usuario haya ingresado algo, sino lo rebota
         return next(403);
     }
     try {
-        const userResponse = yield (0, autenticaciones_controller_1.findUser)(req.body.usuario); //El usuario que viene de la app lo busca en la bdd para ver si está registrado
-        if (userResponse) { //Si el objeto es diferente a null
+        console.log("Usuario posta: ", req.body.usuario);
+        //El usuario que viene de la app lo busca en la bdd para ver si está registrado
+        const userResponse = yield (0, autenticaciones_controller_1.findUser)(req.body.usuario);
+        if (userResponse) {
+            //Si el objeto es diferente a null
             const { user } = userResponse;
-            const passwordSha1 = sha1Hash(req.body.password); //Encripta el password que viene de la app
-            if (passwordSha1 === user.password) { //Si la clave que viene de la bdd y de la aplicacion son iguales entra
+            console.log("Usuario encontrado: ", user);
+            const passwordSha1 = req.body.password;
+            // const passwordSha1 = sha1Hash(req.body.password); //Encripta el password que viene de la app
+            if (passwordSha1 === user.password) {
+                //Si la clave que viene de la bdd y de la aplicacion son iguales entra
                 return login(user);
             }
         }
         return next(403);
     }
     catch (error) {
+        console.log("Error: ", error);
         return next(403);
     }
 }));
