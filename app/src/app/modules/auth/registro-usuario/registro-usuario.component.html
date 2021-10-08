@@ -10,6 +10,9 @@
           <form [formGroup]="usuarioForm">
             <ng-template matStepLabel>Escribe tu nombre</ng-template>
             <mat-form-field>
+              <input matInput placeholder="Email" formControlName="usuario" required>
+            </mat-form-field>
+            <mat-form-field>
               <input matInput placeholder="Nombre" formControlName="nombreUsuario" required>
             </mat-form-field>
             <mat-form-field>
@@ -19,7 +22,7 @@
               <input matInput placeholder="DNI" formControlName="dni" required maxlength="8">
             </mat-form-field> 
             <mat-form-field>
-              <input matInput placeholder="Contraseña" formControlName="password" required>
+              <input matInput placeholder="Password" formControlName="password" required>
             </mat-form-field> 
           </form>
           <div class="cont-buttons">

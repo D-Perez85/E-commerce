@@ -13,6 +13,7 @@ const autenticacionesSchema = require("../schemas/autenticaciones");
 const autenticaciones_controller_1 = require("../autenticaciones.controller");
 const autenticaciones_class_1 = require("../autenticaciones.class");
 const sha1Hash = require('sha1');
+const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 const router = express.Router();
 router.post("/usuario", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -21,6 +22,26 @@ router.post("/usuario", (req, res) => __awaiter(void 0, void 0, void 0, function
         const usuarioNuevo = yield usuarios.save();
         console.log("User agregado", usuarioNuevo);
         return res.status(200).send({ status: "success", data: usuarioNuevo });
+    }
+    catch (err) {
+        console.log("Error: ", err);
+        return res.status(404).send({ status: "error", data: err });
+    }
+}));
+router.post("/registro", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Usuario registro: ", req.body);
+    try {
+        const email = req.body.usuario;
+        const password = req.body.password;
+        yield checkEmail(email);
+        yield checkPassword(password);
+        yield testEmail(email);
+        if (yield (0, autenticaciones_controller_1.findUser)(email)) {
+            return { status: "error", msg: "El usuario ya existe!" };
+        }
+        const usuarioRegistrado = new autenticacionesSchema.usuarios(req.body);
+        yield usuarioRegistrado.save();
+        return res.status(200).send({ status: "success", data: usuarioRegistrado });
     }
     catch (err) {
         console.log("Error: ", err);
@@ -63,5 +84,23 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
         return next(403);
     }
 }));
+function checkEmail(email) {
+    if (!email) {
+        throw { status: "error", msg: "Falta ingresar el email!" };
+    }
+    return;
+}
+function checkPassword(password) {
+    if (!password) {
+        throw { status: "error", msg: "Falta ingresar el password!" };
+    }
+    return;
+}
+function testEmail(email) {
+    console.log("Email> ", email);
+    if (!emailRegex.test(email)) {
+        throw { status: "error", msg: "El email es invalido!" };
+    }
+}
 module.exports = router;
 //# sourceMappingURL=autenticaciones.js.map

@@ -5,6 +5,7 @@ import { findUser} from '../autenticaciones.controller';
 import { Auth } from '../autenticaciones.class';
 
 const sha1Hash = require('sha1');
+const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
 const router = express.Router();
 
 
@@ -20,6 +21,32 @@ router.post("/usuario", async (req, res) => {
   } catch (err) {
     console.log("Error: ", err);
     return res.status(404).send({ status: "error", data: err });
+  }
+});
+
+
+router.post("/registro", async (req, res) => {
+  console.log("Usuario registro: ", req.body);
+
+  try {
+      const email = req.body.usuario;
+      const password = req.body.password;
+
+      await checkEmail(email);
+      await checkPassword(password);
+      await testEmail(email);
+
+      if (await findUser(email)) {
+          return { status: "error", msg: "El usuario ya existe!" };
+      }
+
+      const usuarioRegistrado = new autenticacionesSchema.usuarios(req.body);
+      await usuarioRegistrado.save();
+
+      return res.status(200).send({ status: "success", data: usuarioRegistrado });
+  } catch (err) {
+      console.log("Error: ", err);
+      return res.status(404).send({ status: "error", data: err });
   }
 });
 
@@ -63,6 +90,27 @@ router.post("/login", async (req, res, next) => {
       return next(403);
   }
 });
+
+function checkEmail(email) {
+  if (!email) {
+      throw { status: "error", msg: "Falta ingresar el email!" };
+  }
+  return;
+}
+
+function checkPassword(password) {
+  if (!password) {
+      throw { status: "error", msg: "Falta ingresar el password!" };
+  }
+  return;
+}
+
+function testEmail(email) {
+  console.log("Email> ", email);
+  if (!emailRegex.test(email)) {
+      throw { status: "error", msg: "El email es invalido!" };
+  }
+}
 
 
 export = router;

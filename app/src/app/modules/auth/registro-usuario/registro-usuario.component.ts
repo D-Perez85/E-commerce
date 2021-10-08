@@ -15,6 +15,7 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioForm = this.fb.group({
+      usuario: ["", Validators.required],
       nombreUsuario: ["", Validators.required],
       apellidoUsuario: ["", Validators.required],
       dni: ["", Validators.required],

@@ -9,7 +9,7 @@ export class AutenticacionService {
 
   registrarUsuario(usuario: any) {
     //debugger
-    return this.http.post(this.usuarioUrl + "/usuario", usuario);
+    return this.http.post(this.usuarioUrl + "/registro", usuario);
   }
 
   loguearUsuario(usuario: any) {
